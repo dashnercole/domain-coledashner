@@ -415,13 +415,13 @@
         return { emoji: '🌡️', label: 'Mixed conditions' };
       }
 
-      function formatTimeLabel(date, isFirst){
-        if (isFirst) return 'Now';
-        const hours = date.getHours();
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        const h12 = hours % 12 || 12;
-        return `${h12} ${ampm}`;
-      }
+      function formatTimeLabel(date){
+  const hours = date.getHours();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const h12 = hours % 12 || 12;
+  return `${h12} ${ampm}`;
+}
+
 
       async function loadWeather(){
         try{
@@ -474,7 +474,7 @@
 
             const timeEl = document.createElement('div');
             timeEl.className = 'hour-card-time';
-            timeEl.textContent = formatTimeLabel(t, isFirst);
+            timeEl.textContent = formatTimeLabel(t);
             if (isFirst){
               const badge = document.createElement('span');
               badge.className = 'badge-now';
