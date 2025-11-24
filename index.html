@@ -47,9 +47,20 @@
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
+
+    /* logo link (your name) */
+    .logo{
+      font-weight:800;
+      letter-spacing:.5px;
+      color:var(--text);      /* makes your name light instead of blue */
+      text-decoration:none;   /* no underline */
+    }
+    .logo:hover{
+      text-decoration:none;   /* keep it clean on hover */
+    }
+
     .container{max-width:1100px; margin:0 auto; padding:24px}
     header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
-    .logo{font-weight:800; letter-spacing:.5px}
     nav a{margin:0 10px; font-weight:600}
     nav a.active{color:var(--accent-2);}
     .card{background:var(--panel); border:1px solid rgba(148,163,184,.18); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow)}
@@ -168,17 +179,15 @@
       border-radius:999px;
     }
     .hour-card{
-  min-width:70px;
-  padding:8px 10px;
-  border-radius:14px;
-  /* lighter background for better readability */
-  background:rgba(148,163,184,.18);
-  border:1px solid rgba(148,163,184,.5);
-  text-align:center;
-  font-size:0.8rem;
-  scroll-snap-align:start;
-}
-
+      min-width:70px;
+      padding:8px 10px;
+      border-radius:14px;
+      /* lighter background for better readability */
+      background:rgba(148,163,184,.18);
+      border:1px solid rgba(148,163,184,.5);
+      text-align:center;
+      font-size:0.8rem;
+      scroll-snap-align:start;
     }
     .hour-card-time{
       color:var(--muted);
@@ -218,26 +227,25 @@
 <body>
   <div class="container">
     <header>
-  <!-- animated name -->
-  <a href="/" id="name-container" class="logo" style="position: relative;">
-    <span
-      id="variable-proximity"
-      class="variable-proximity"
-      data-label="Cole Dashner"
-      data-from="'wght' 400, 'opsz' 12"
-      data-to="'wght' 1000, 'opsz' 40"
-      data-radius="100"
-      data-falloff="linear"
-    ></span>
-  </a>
-  <nav>
-    <a href="/" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="mailto:dashnercole@gmail.com">Contact</a>
-  </nav>
-</header>
-
+      <!-- animated name -->
+      <a href="/" id="name-container" class="logo" style="position: relative;">
+        <span
+          id="variable-proximity"
+          class="variable-proximity"
+          data-label="Cole Dashner"
+          data-from="'wght' 400, 'opsz' 12"
+          data-to="'wght' 1000, 'opsz' 40"
+          data-radius="100"
+          data-falloff="linear"
+        ></span>
+      </a>
+      <nav>
+        <a href="/" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="mailto:dashnercole@gmail.com">Contact</a>
+      </nav>
+    </header>
 
     <main>
       <section class="section card weather-card">
@@ -417,12 +425,11 @@
       }
 
       function formatTimeLabel(date){
-  const hours = date.getHours();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  const h12 = hours % 12 || 12;
-  return `${h12} ${ampm}`;
-}
-
+        const hours = date.getHours();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const h12 = hours % 12 || 12;
+        return `${h12} ${ampm}`;
+      }
 
       async function loadWeather(){
         try{
@@ -521,3 +528,4 @@
   </script>
 </body>
 </html>
+
