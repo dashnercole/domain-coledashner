@@ -82,15 +82,14 @@
        - Container + layout
        ======================= */
 
-    /* logo link (your name) */
     .logo{
       font-weight:800;
       letter-spacing:.5px;
-      color:var(--text);      /* makes your name light instead of blue */
-      text-decoration:none;   /* no underline */
+      color:var(--text);
+      text-decoration:none;
     }
     .logo:hover{
-      text-decoration:none;   /* keep it clean on hover */
+      text-decoration:none;
     }
 
     .container{
@@ -112,7 +111,6 @@
       font-weight:600
     }
 
-    /* Highlight the current page in the nav */
     nav a.active{
       color:var(--accent-2);
     }
@@ -159,8 +157,6 @@
 
     /* =======================
        VARIABLE FONT NAME
-       - Animated variable font setup
-       - Used for "Cole Dashner" hover effect
        ======================= */
     .variable-proximity {
       font-family: 'Roboto Flex', sans-serif;
@@ -176,7 +172,6 @@
       will-change: font-variation-settings;
     }
 
-    /* Screen-reader only text */
     .sr-only {
       position:absolute;
       width:1px;
@@ -191,11 +186,8 @@
 
     /* =======================
        WEATHER DASHBOARD STYLES
-       - Overall layout and “pill”
-       - Current conditions and hourly row
        ======================= */
 
-    /* Small pill label above title */
     .pill{
       display:inline-block;
       padding:10px 14px;
@@ -207,7 +199,6 @@
       font-size:0.9rem;
     }
 
-    /* Main weather card layout */
     .weather-card{
       display:flex;
       flex-direction:column;
@@ -276,10 +267,6 @@
       max-width:420px;
     }
 
-    /* =======================
-       HOURLY FORECAST STRIP
-       - Horizontal scroll of hour “chips”
-       ======================= */
     .hourly-wrapper{
       border-top:1px solid rgba(148,163,184,.25);
       padding-top:14px;
@@ -305,7 +292,6 @@
       scroll-snap-type:x mandatory;
     }
 
-    /* Scrollbar styling for horizontal hourly strip */
     .hourly-scroll::-webkit-scrollbar{
       height:4px;
     }
@@ -314,12 +300,10 @@
       border-radius:999px;
     }
 
-    /* Individual hour “chip” */
     .hour-card{
       min-width:70px;
       padding:8px 10px;
       border-radius:14px;
-      /* lighter background for better readability */
       background:rgba(148,163,184,.18);
       border:1px solid rgba(148,163,184,.5);
       text-align:center;
@@ -348,7 +332,6 @@
       font-size:0.7rem;
     }
 
-    /* “Now” badge on the first hour chip */
     .badge-now{
       display:inline-block;
       padding:2px 6px;
@@ -361,8 +344,6 @@
 
     /* =======================
        BIBLE VERSE CARD
-       - Layout and typography for
-         the "Verse of the Day" section
        ======================= */
     .verse-card{
       display:flex;
@@ -426,7 +407,6 @@
       font-size:0.85rem;
     }
 
-    /* Optional supporting text style (currently unused) */
     .welcome-text{
       font-size:0.9rem;
       color:var(--muted);
@@ -437,15 +417,9 @@
 </head>
 <body>
   <div class="container">
-    <!-- =======================
-         HEADER
-         - Logo (animated name)
-         - Simple navigation
-         ======================= -->
+    <!-- HEADER -->
     <header>
-      <!-- animated name anchor wrapper -->
       <a href="/" id="name-container" class="logo" style="position: relative;">
-        <!-- span used by the JS to split text into letters and animate -->
         <span
           id="variable-proximity"
           class="variable-proximity"
@@ -457,7 +431,6 @@
         ></span>
       </a>
 
-      <!-- Top navigation links -->
       <nav>
         <a href="/" class="active">Home</a>
         <a href="about.html">About</a>
@@ -466,33 +439,24 @@
       </nav>
     </header>
 
-    <!-- =======================
-         MAIN CONTENT
-         - Bible verse of the day
-         - Weather dashboard
-         ======================= -->
+    <!-- MAIN CONTENT -->
     <main>
-      <!-- Bible Verse of the Day card (now above weather) -->
+      <!-- Bible Verse of the Day card (above weather) -->
       <section class="section card verse-card">
-        <!-- Small badge/title -->
-        <span class="verse-pill">Bible Verse of the Day</span>
+        <span class="verse-pill">Bible Verse of the Day · NIV</span>
 
-        <!-- Reference (e.g., John 3:16) -->
         <div id="verse-ref" class="verse-ref">
           Loading reference...
         </div>
 
-        <!-- Actual verse text -->
         <div id="verse-text" class="verse-text">
           Loading verse...
         </div>
 
-        <!-- Meta line: date + theme -->
         <div id="verse-meta" class="verse-meta">
           —
         </div>
 
-        <!-- Fun fact rows: who, where, when -->
         <div class="verse-facts">
           <div class="verse-fact-row">
             <span class="verse-fact-label">Author</span>
@@ -507,24 +471,30 @@
             <span id="verse-date" class="verse-fact-value">—</span>
           </div>
         </div>
+
+        <div style="margin-top:10px;">
+          <a id="verse-link"
+             class="verse-meta"
+             href="#"
+             target="_blank"
+             rel="noopener noreferrer">
+            Read this verse in NIV ↗
+          </a>
+        </div>
       </section>
 
       <!-- Weather card -->
       <section class="section card weather-card">
         <div class="weather-header">
           <div class="weather-header-main">
-            <!-- Category pill above title -->
             <span class="pill">Columbus Weather Dashboard</span>
 
-            <!-- Card title -->
             <h1 id="weather-title">Columbus, OH</h1>
 
-            <!-- Subtitle line under title -->
             <div class="weather-location">
               Live snapshot • Fahrenheit • Next 24 hours
             </div>
 
-            <!-- Current temperature + icon + summary -->
             <div class="weather-current">
               <span class="weather-temp-now" id="current-temp">--°</span>
               <div>
@@ -536,20 +506,17 @@
               </div>
             </div>
 
-            <!-- Daily high/low -->
             <div class="weather-hi-lo">
               <span>High: <strong id="high-temp">--°</strong></span>
               <span>Low: <strong id="low-temp">--°</strong></span>
             </div>
           </div>
 
-          <!-- Small right-hand tagline block / personality text -->
           <div class="weather-tagline">
             Current temperature &amp; conditions
           </div>
         </div>
 
-        <!-- Hourly forecast scroll strip -->
         <div class="hourly-wrapper">
           <div class="hourly-title-row">
             <span>Next 24 hours</span>
@@ -562,31 +529,18 @@
       </section>
     </main>
 
-    <!-- =======================
-         FOOTER
-         - Year is filled by JS
-         ======================= -->
+    <!-- FOOTER -->
     <footer class="footer">
       © <span id="year"></span> Cole Dashner
     </footer>
   </div>
 
   <script>
-    // ============================
     // FOOTER YEAR
-    // - Dynamically sets the current year
-    //   so you don’t need to update manually
-    // ============================
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ============================
     // ANIMATED NAME (VARIABLE FONT)
-    // - Uses Roboto Flex and pointer
-    //   proximity to morph weight/opsz
-    //   of each letter independently
-    // ============================
     (function(){
-      // Parse a "'wght' 400, 'opsz' 12" style string into a Map of axis -> value
       const parseSettings = (str) => {
         const map = new Map();
         str.split(',').map(s => s.trim()).forEach(entry => {
@@ -598,25 +552,20 @@
         return map;
       };
 
-      // Linear interpolation between two values
       const lerp = (a,b,t)=>a+(b-a)*t;
-
-      // Euclidean distance between two points
       const dist = (x1,y1,x2,y2)=>Math.hypot(x2-x1,y2-y1);
 
-      // Falloff curve controlling how strong the effect is at a given distance
       const falloffFn = (type, d, r) => {
         const n = Math.min(Math.max(1 - d/r, 0), 1);
         if (type === 'exponential') return n*n;
         if (type === 'gaussian') return Math.exp(-((d/(r/2))*(d/(r/2)))/2);
-        return n; // default: linear
+        return n;
       };
 
       const container = document.getElementById('name-container');
       const span = document.getElementById('variable-proximity');
       if (!container || !span) return;
 
-      // Read configuration from data-* attributes or defaults
       const label = span.dataset.label || 'Cole Dashner';
       const fromStr = span.dataset.from || "'wght' 400, 'opsz' 12";
       const toStr   = span.dataset.to   || "'wght' 1000, 'opsz' 40";
@@ -626,14 +575,12 @@
       const from = parseSettings(fromStr);
       const to   = parseSettings(toStr);
 
-      // Build a list of axes with from/to values
       const axes = Array.from(from.entries()).map(([axis, fromVal]) => ({
         axis,
         fromVal,
         toVal: to.has(axis) ? to.get(axis) : fromVal
       }));
 
-      // Replace the original span content with individual letter spans
       span.innerHTML = '';
       const words = label.split(' ');
       const letters = [];
@@ -657,13 +604,11 @@
         }
       });
 
-      // Screen-reader text for accessibility
       const sr = document.createElement('span');
       sr.className = 'sr-only';
       sr.textContent = label;
       span.appendChild(sr);
 
-      // Track the current “pointer” position relative to container
       const pos = { x: 0, y: 0 };
       const updatePos = (cx, cy) => {
         const rect = container.getBoundingClientRect();
@@ -671,13 +616,11 @@
         pos.y = cy - rect.top;
       };
 
-      // Mouse + touch events drive the effect
       container.addEventListener('mousemove', e => updatePos(e.clientX, e.clientY), { passive:true });
       container.addEventListener('touchmove', e => {
         if (e.touches[0]) updatePos(e.touches[0].clientX, e.touches[0].clientY);
       }, { passive:true });
 
-      // Animation loop: adjust font-variation-settings for each letter on change
       let last = { x:null, y:null };
       function frame(){
         if (last.x !== pos.x || last.y !== pos.y) {
@@ -690,13 +633,11 @@
             const cy = (r.top + r.height/2) - cRect.top;
             const d = dist(pos.x, pos.y, cx, cy);
 
-            // Outside radius: reset to baseline (from values)
             if (d >= radius) {
               el.style.fontVariationSettings = axes
                 .map(({axis, fromVal}) => `'${axis}' ${fromVal}`)
                 .join(', ');
             } else {
-              // Inside radius: interpolate from -> to based on distance
               const t = falloffFn(falloff, d, radius);
               el.style.fontVariationSettings = axes
                 .map(({axis, fromVal, toVal}) => `'${axis}' ${lerp(fromVal, toVal, t)}`)
@@ -709,13 +650,8 @@
       requestAnimationFrame(frame);
     })();
 
-    // ============================
     // WEATHER WIDGET — COLUMBUS, OH
-    // - Fetches from Open-Meteo
-    // - Displays current conditions + next 24 hours
-    // ============================
     (function(){
-      // Grab references to DOM elements for current and hourly data
       const currentTempEl = document.getElementById('current-temp');
       const currentSummaryEl = document.getElementById('current-summary');
       const currentEmojiEl = document.getElementById('current-emoji');
@@ -724,19 +660,12 @@
       const updatedTimeEl = document.getElementById('updated-time');
       const hourlyStripEl = document.getElementById('hourly-strip');
 
-      // Columbus, OH coordinates
       const latitude = 39.9612;
       const longitude = -82.9988;
 
-      // Open-Meteo endpoint for:
-      // - current weather
-      // - hourly temp, precipitation probability, weather code
-      // - daily max/min temps
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation_probability,weathercode&daily=temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=1&current_weather=true`;
 
-      // Map Open-Meteo weather code to emoji & label
       function getWeatherIconAndLabel(code){
-        // Open-Meteo weathercode mapping (simplified)
         if (code === 0) return { emoji: '☀️', label: 'Clear' };
         if (code === 1 || code === 2) return { emoji: '🌤️', label: 'Mostly clear' };
         if (code === 3) return { emoji: '☁️', label: 'Cloudy' };
@@ -750,7 +679,6 @@
         return { emoji: '🌡️', label: 'Mixed conditions' };
       }
 
-      // Turn a Date into a “12 AM / 1 PM” label
       function formatTimeLabel(date){
         const hours = date.getHours();
         const ampm = hours >= 12 ? 'PM' : 'AM';
@@ -758,33 +686,27 @@
         return `${h12} ${ampm}`;
       }
 
-      // Main fetch + render function
       async function loadWeather(){
         try{
           const res = await fetch(url);
           if (!res.ok) throw new Error('Network error');
           const data = await res.json();
 
-          // Current + daily + hourly pulled out for convenience
           const current = data.current_weather;
           const daily = data.daily;
           const hourly = data.hourly;
 
-          // === Current conditions ===
           const { emoji, label } = getWeatherIconAndLabel(current.weathercode);
           currentTempEl.textContent = `${Math.round(current.temperature)}°`;
           currentSummaryEl.textContent = label;
           currentEmojiEl.textContent = emoji;
 
-          // Daily high / low for the day
           highTempEl.textContent = `${Math.round(daily.temperature_2m_max[0])}°`;
           lowTempEl.textContent = `${Math.round(daily.temperature_2m_min[0])}°`;
 
-          // Format the “Updated” timestamp based on current.weather.time
           const updated = new Date(current.time);
           updatedTimeEl.textContent = `Updated ${updated.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
 
-          // === Build hourly forecast cards for next 24 hours ===
           hourlyStripEl.innerHTML = '';
 
           const now = new Date();
@@ -793,7 +715,6 @@
           const pops = hourly.precipitation_probability;
           const codes = hourly.weathercode;
 
-          // Find index of first hour >= current time
           let startIndex = 0;
           for (let i = 0; i < times.length; i++){
             const t = new Date(times[i]);
@@ -803,10 +724,8 @@
             }
           }
 
-          // Limit to at most 24 hours ahead
           const endIndex = Math.min(startIndex + 24, times.length);
 
-          // Create and append hour cards
           for (let i = startIndex; i < endIndex; i++){
             const t = new Date(times[i]);
             const isFirst = (i === startIndex);
@@ -815,7 +734,6 @@
             const card = document.createElement('div');
             card.className = 'hour-card';
 
-            // Time + optional “Now” badge
             const timeEl = document.createElement('div');
             timeEl.className = 'hour-card-time';
             timeEl.textContent = formatTimeLabel(t);
@@ -827,23 +745,19 @@
               timeEl.appendChild(badge);
             }
 
-            // Weather emoji
             const emojiEl = document.createElement('div');
             emojiEl.className = 'hour-card-emoji';
             emojiEl.textContent = e;
 
-            // Temperature for that hour
             const tempEl = document.createElement('div');
             tempEl.className = 'hour-card-temp';
             tempEl.textContent = `${Math.round(temps[i])}°`;
 
-            // Meta line: condition + precip probability if available
             const metaEl = document.createElement('div');
             metaEl.className = 'hour-card-meta';
             const popVal = pops && pops[i] != null ? `${pops[i]}%` : '';
             metaEl.textContent = popVal ? `${lbl} • ${popVal}` : lbl;
 
-            // Assemble card and append to strip
             card.appendChild(timeEl);
             card.appendChild(emojiEl);
             card.appendChild(tempEl);
@@ -852,14 +766,12 @@
             hourlyStripEl.appendChild(card);
           }
 
-          // Fallback if no hourly data could be rendered
           if (!hourlyStripEl.children.length){
             hourlyStripEl.innerHTML =
               '<div class="muted" style="font-size:0.85rem;">Hourly forecast is temporarily unavailable.</div>';
           }
         } catch (err){
           console.error(err);
-          // Simple user-facing error state if the request fails
           currentSummaryEl.textContent = 'Unable to load weather right now.';
           updatedTimeEl.textContent = '';
           hourlyStripEl.innerHTML =
@@ -867,16 +779,10 @@
         }
       }
 
-      // Kick off initial load
       loadWeather();
     })();
 
-    // ============================
-    // BIBLE VERSE OF THE DAY
-    // - Picks a verse from a small list
-    //   based on the day of the year
-    // - Includes fun facts: author, where, when
-    // ============================
+    // BIBLE VERSE OF THE DAY — NIV-LINKED
     (function(){
       const verseRefEl = document.getElementById('verse-ref');
       const verseTextEl = document.getElementById('verse-text');
@@ -884,72 +790,78 @@
       const verseAuthorEl = document.getElementById('verse-author');
       const verseLocationEl = document.getElementById('verse-location');
       const verseDateEl = document.getElementById('verse-date');
+      const verseLinkEl = document.getElementById('verse-link');
 
       if (!verseRefEl || !verseTextEl || !verseMetaEl ||
-          !verseAuthorEl || !verseLocationEl || !verseDateEl) return;
+          !verseAuthorEl || !verseLocationEl || !verseDateEl || !verseLinkEl) return;
 
-      // Small rotating set of verses (KJV wording, public domain)
-      // Fun facts are simplified/traditional attributions.
+      // Small rotating set of verses with NIV-style summaries + metadata.
       const verses = [
         {
           ref: 'Proverbs 3:5–6',
-          text: 'Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.',
+          summary: 'Trust in the Lord with all your heart and submit your ways to him.',
           theme: 'Trust',
           author: 'Traditionally Solomon',
           location: 'Kingdom of Israel (likely Jerusalem)',
-          date: 'c. 10th century BC'
+          date: 'c. 10th century BC',
+          link: 'https://www.biblegateway.com/passage/?search=Proverbs+3%3A5-6&version=NIV'
         },
         {
           ref: 'Philippians 4:6–7',
-          text: 'Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God shall keep your hearts and minds through Christ Jesus.',
+          summary: 'Do not be anxious, but pray with thanksgiving and receive God’s peace.',
           theme: 'Peace',
           author: 'The apostle Paul',
           location: 'Written from prison in Rome',
-          date: 'c. AD 60–62'
+          date: 'c. AD 60–62',
+          link: 'https://www.biblegateway.com/passage/?search=Philippians+4%3A6-7&version=NIV'
         },
         {
           ref: 'Isaiah 40:31',
-          text: 'They that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.',
+          summary: 'Those who hope in the Lord renew their strength and soar like eagles.',
           theme: 'Strength',
           author: 'The prophet Isaiah',
           location: 'Kingdom of Judah (Jerusalem area)',
-          date: 'c. 8th century BC'
+          date: 'c. 8th century BC',
+          link: 'https://www.biblegateway.com/passage/?search=Isaiah+40%3A31&version=NIV'
         },
         {
           ref: 'Romans 8:28',
-          text: 'We know that all things work together for good to them that love God, to them who are the called according to his purpose.',
+          summary: 'In all things God works for the good of those who love him.',
           theme: 'Purpose',
           author: 'The apostle Paul',
           location: 'Likely written from Corinth',
-          date: 'c. AD 57'
+          date: 'c. AD 57',
+          link: 'https://www.biblegateway.com/passage/?search=Romans+8%3A28&version=NIV'
         },
         {
           ref: 'Matthew 11:28',
-          text: 'Come unto me, all ye that labour and are heavy laden, and I will give you rest.',
+          summary: 'Jesus invites the weary and burdened to come to him for rest.',
           theme: 'Rest',
           author: 'Traditionally Matthew the apostle',
           location: 'Likely Syria or Palestine',
-          date: 'c. AD 60–70'
+          date: 'c. AD 60–70',
+          link: 'https://www.biblegateway.com/passage/?search=Matthew+11%3A28&version=NIV'
         },
         {
           ref: 'Joshua 1:9',
-          text: 'Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.',
+          summary: 'Be strong and courageous because God is with you wherever you go.',
           theme: 'Courage',
           author: 'Traditionally Joshua',
           location: 'On the edge of the Promised Land (Canaan)',
-          date: 'c. 14th–13th century BC'
+          date: 'c. 14th–13th century BC',
+          link: 'https://www.biblegateway.com/passage/?search=Joshua+1%3A9&version=NIV'
         },
         {
           ref: 'Psalm 46:1',
-          text: 'God is our refuge and strength, a very present help in trouble.',
+          summary: 'God is our refuge and strength, an ever-present help in trouble.',
           theme: 'Refuge',
-          author: 'Sons of Korah (Psalm writers)',
+          author: 'Sons of Korah (psalm writers)',
           location: 'Kingdom of Judah',
-          date: 'c. 10th–7th century BC'
+          date: 'c. 10th–7th century BC',
+          link: 'https://www.biblegateway.com/passage/?search=Psalm+46%3A1&version=NIV'
         }
       ];
 
-      // Helper: compute day of year (1–366)
       function dayOfYear(date){
         const start = new Date(date.getFullYear(), 0, 0);
         const diff = date - start;
@@ -961,9 +873,8 @@
       const index = dayOfYear(today) % verses.length;
       const verse = verses[index];
 
-      // Fill in DOM
       verseRefEl.textContent = verse.ref;
-      verseTextEl.textContent = verse.text;
+      verseTextEl.textContent = verse.summary;
 
       const dateLabel = today.toLocaleDateString([], {
         year: 'numeric',
@@ -971,10 +882,11 @@
         day: 'numeric'
       });
 
-      verseMetaEl.textContent = `Verse for ${dateLabel} · Theme: ${verse.theme}`;
+      verseMetaEl.textContent = `Verse for ${dateLabel} · Theme: ${verse.theme} · NIV`;
       verseAuthorEl.textContent = verse.author;
       verseLocationEl.textContent = verse.location;
       verseDateEl.textContent = verse.date;
+      verseLinkEl.href = verse.link;
     })();
   </script>
 </body>
