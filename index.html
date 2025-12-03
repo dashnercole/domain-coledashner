@@ -195,7 +195,7 @@
        - Current conditions and hourly row
        ======================= */
 
-    /* Small pill label above the card title */
+    /* Small pill label above title */
     .pill{
       display:inline-block;
       padding:10px 14px;
@@ -359,6 +359,73 @@
       margin-left:4px;
     }
 
+    /* =======================
+       BIBLE VERSE CARD
+       - Layout and typography for
+         the "Verse of the Day" section
+       ======================= */
+    .verse-card{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .verse-pill{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(50,215,75,.14);
+      border:1px solid rgba(50,215,75,.55);
+      font-size:0.85rem;
+      color:var(--text);
+    }
+
+    .verse-ref{
+      font-weight:600;
+      font-size:1rem;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .verse-text{
+      font-size:0.98rem;
+      line-height:1.8;
+    }
+
+    .verse-meta{
+      font-size:0.8rem;
+      color:var(--muted);
+    }
+
+    .verse-facts{
+      margin-top:4px;
+      padding-top:10px;
+      border-top:1px solid rgba(148,163,184,.25);
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+      gap:8px 16px;
+      font-size:0.8rem;
+    }
+
+    .verse-fact-row{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .verse-fact-label{
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      font-weight:600;
+      color:var(--muted);
+      font-size:0.7rem;
+    }
+
+    .verse-fact-value{
+      font-size:0.85rem;
+    }
+
     /* Optional supporting text style (currently unused) */
     .welcome-text{
       font-size:0.9rem;
@@ -401,9 +468,48 @@
 
     <!-- =======================
          MAIN CONTENT
-         - Single “hero” card: Columbus weather dashboard
+         - Bible verse of the day
+         - Weather dashboard
          ======================= -->
     <main>
+      <!-- Bible Verse of the Day card (now above weather) -->
+      <section class="section card verse-card">
+        <!-- Small badge/title -->
+        <span class="verse-pill">Bible Verse of the Day</span>
+
+        <!-- Reference (e.g., John 3:16) -->
+        <div id="verse-ref" class="verse-ref">
+          Loading reference...
+        </div>
+
+        <!-- Actual verse text -->
+        <div id="verse-text" class="verse-text">
+          Loading verse...
+        </div>
+
+        <!-- Meta line: date + theme -->
+        <div id="verse-meta" class="verse-meta">
+          —
+        </div>
+
+        <!-- Fun fact rows: who, where, when -->
+        <div class="verse-facts">
+          <div class="verse-fact-row">
+            <span class="verse-fact-label">Author</span>
+            <span id="verse-author" class="verse-fact-value">—</span>
+          </div>
+          <div class="verse-fact-row">
+            <span class="verse-fact-label">Where</span>
+            <span id="verse-location" class="verse-fact-value">—</span>
+          </div>
+          <div class="verse-fact-row">
+            <span class="verse-fact-label">When</span>
+            <span id="verse-date" class="verse-fact-value">—</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Weather card -->
       <section class="section card weather-card">
         <div class="weather-header">
           <div class="weather-header-main">
@@ -439,7 +545,7 @@
 
           <!-- Small right-hand tagline block / personality text -->
           <div class="weather-tagline">
-            Current temperature & conditions
+            Current temperature &amp; conditions
           </div>
         </div>
 
@@ -763,6 +869,112 @@
 
       // Kick off initial load
       loadWeather();
+    })();
+
+    // ============================
+    // BIBLE VERSE OF THE DAY
+    // - Picks a verse from a small list
+    //   based on the day of the year
+    // - Includes fun facts: author, where, when
+    // ============================
+    (function(){
+      const verseRefEl = document.getElementById('verse-ref');
+      const verseTextEl = document.getElementById('verse-text');
+      const verseMetaEl = document.getElementById('verse-meta');
+      const verseAuthorEl = document.getElementById('verse-author');
+      const verseLocationEl = document.getElementById('verse-location');
+      const verseDateEl = document.getElementById('verse-date');
+
+      if (!verseRefEl || !verseTextEl || !verseMetaEl ||
+          !verseAuthorEl || !verseLocationEl || !verseDateEl) return;
+
+      // Small rotating set of verses (KJV wording, public domain)
+      // Fun facts are simplified/traditional attributions.
+      const verses = [
+        {
+          ref: 'Proverbs 3:5–6',
+          text: 'Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.',
+          theme: 'Trust',
+          author: 'Traditionally Solomon',
+          location: 'Kingdom of Israel (likely Jerusalem)',
+          date: 'c. 10th century BC'
+        },
+        {
+          ref: 'Philippians 4:6–7',
+          text: 'Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God shall keep your hearts and minds through Christ Jesus.',
+          theme: 'Peace',
+          author: 'The apostle Paul',
+          location: 'Written from prison in Rome',
+          date: 'c. AD 60–62'
+        },
+        {
+          ref: 'Isaiah 40:31',
+          text: 'They that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.',
+          theme: 'Strength',
+          author: 'The prophet Isaiah',
+          location: 'Kingdom of Judah (Jerusalem area)',
+          date: 'c. 8th century BC'
+        },
+        {
+          ref: 'Romans 8:28',
+          text: 'We know that all things work together for good to them that love God, to them who are the called according to his purpose.',
+          theme: 'Purpose',
+          author: 'The apostle Paul',
+          location: 'Likely written from Corinth',
+          date: 'c. AD 57'
+        },
+        {
+          ref: 'Matthew 11:28',
+          text: 'Come unto me, all ye that labour and are heavy laden, and I will give you rest.',
+          theme: 'Rest',
+          author: 'Traditionally Matthew the apostle',
+          location: 'Likely Syria or Palestine',
+          date: 'c. AD 60–70'
+        },
+        {
+          ref: 'Joshua 1:9',
+          text: 'Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.',
+          theme: 'Courage',
+          author: 'Traditionally Joshua',
+          location: 'On the edge of the Promised Land (Canaan)',
+          date: 'c. 14th–13th century BC'
+        },
+        {
+          ref: 'Psalm 46:1',
+          text: 'God is our refuge and strength, a very present help in trouble.',
+          theme: 'Refuge',
+          author: 'Sons of Korah (Psalm writers)',
+          location: 'Kingdom of Judah',
+          date: 'c. 10th–7th century BC'
+        }
+      ];
+
+      // Helper: compute day of year (1–366)
+      function dayOfYear(date){
+        const start = new Date(date.getFullYear(), 0, 0);
+        const diff = date - start;
+        const oneDay = 1000 * 60 * 60 * 24;
+        return Math.floor(diff / oneDay);
+      }
+
+      const today = new Date();
+      const index = dayOfYear(today) % verses.length;
+      const verse = verses[index];
+
+      // Fill in DOM
+      verseRefEl.textContent = verse.ref;
+      verseTextEl.textContent = verse.text;
+
+      const dateLabel = today.toLocaleDateString([], {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+
+      verseMetaEl.textContent = `Verse for ${dateLabel} · Theme: ${verse.theme}`;
+      verseAuthorEl.textContent = verse.author;
+      verseLocationEl.textContent = verse.location;
+      verseDateEl.textContent = verse.date;
     })();
   </script>
 </body>
