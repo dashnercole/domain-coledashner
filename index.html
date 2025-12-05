@@ -116,6 +116,35 @@
     }
 
     /* =======================
+       LAYOUT: MAIN GRID
+       ======================= */
+    .section{margin-top:30px}
+
+    .main-grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1.1fr) minmax(0, 1.4fr);
+      gap:24px;
+      align-items:flex-start;
+      margin-top:30px;
+    }
+
+    .right-stack{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    @media (max-width: 900px){
+      header{
+        flex-direction:column;
+        align-items:flex-start
+      }
+      .main-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    /* =======================
        CARD & TYPOGRAPHY
        ======================= */
     .card{
@@ -137,7 +166,6 @@
     }
 
     .muted{color:var(--muted)}
-    .section{margin-top:30px}
 
     .footer{
       padding:30px 0;
@@ -148,11 +176,43 @@
 
     ul{padding-left:18px}
 
-    @media (max-width: 900px){
-      header{
-        flex-direction:column;
-        align-items:flex-start
-      }
+    /* =======================
+       PROFILE CARD (LEFT COLUMN)
+       ======================= */
+    .profile-card{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .profile-photo-wrapper{
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,.4);
+      box-shadow:var(--shadow);
+      max-width:360px;
+      width:100%;
+      aspect-ratio:4/5;
+      background:#000;
+    }
+
+    .profile-photo{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .profile-text-title{
+      font-size:1.1rem;
+      font-weight:600;
+      margin-bottom:4px;
+    }
+
+    .profile-text-body{
+      font-size:0.95rem;
+      color:var(--muted);
+      max-width:420px;
     }
 
     /* =======================
@@ -185,9 +245,8 @@
     }
 
     /* =======================
-       WEATHER DASHBOARD STYLES
+       BADGES / PILLS
        ======================= */
-
     .pill{
       display:inline-block;
       padding:10px 14px;
@@ -198,6 +257,10 @@
       text-decoration:none;
       font-size:0.9rem;
     }
+
+    /* =======================
+       WEATHER DASHBOARD STYLES
+       ======================= */
 
     .weather-card{
       display:flex;
@@ -441,92 +504,112 @@
 
     <!-- MAIN CONTENT -->
     <main>
-      <!-- Bible Verse of the Day card (above weather) -->
-      <section class="section card verse-card">
-        <span class="verse-pill"> Verse of the Day · NIV</span>
-
-        <div id="verse-ref" class="verse-ref">
-          Loading reference...
-        </div>
-
-        <div id="verse-text" class="verse-text">
-          Loading verse...
-        </div>
-
-        <div id="verse-meta" class="verse-meta">
-          —
-        </div>
-
-        <div class="verse-facts">
-          <div class="verse-fact-row">
-            <span class="verse-fact-label">Author</span>
-            <span id="verse-author" class="verse-fact-value">—</span>
+      <div class="main-grid">
+        <!-- LEFT: PROFILE CARD -->
+        <section class="card profile-card">
+          <div class="profile-photo-wrapper">
+            <img src="cole-dashner-headshot.jpg" alt="Cole Dashner Headshot" />
           </div>
-          <div class="verse-fact-row">
-            <span class="verse-fact-label">Where</span>
-            <span id="verse-location" class="verse-fact-value">—</span>
+          <div>
+            <div class="profile-text-title">Hi, I’m Cole 👋</div>
+            <p class="profile-text-body">
+              I’m a Computer Science &amp; Engineering student at The Ohio State University,
+              focused on building practical systems, tools, and experiences that serve real people.
+              This site pulls together some of what I’m learning in code, data, and everyday life.
+            </p>
           </div>
-          <div class="verse-fact-row">
-            <span class="verse-fact-label">When</span>
-            <span id="verse-date" class="verse-fact-value">—</span>
-          </div>
-        </div>
+        </section>
 
-        <div style="margin-top:10px;">
-          <a id="verse-link"
-             class="verse-meta"
-             href="#"
-             target="_blank"
-             rel="noopener noreferrer">
-            Read this verse in NIV ↗
-          </a>
-        </div>
-      </section>
+        <!-- RIGHT: VERSE + WEATHER STACKED -->
+        <div class="right-stack">
+          <!-- Bible Verse of the Day card -->
+          <section class="card verse-card">
+            <span class="verse-pill"> Verse of the Day · NIV</span>
 
-      <!-- Weather card -->
-      <section class="section card weather-card">
-        <div class="weather-header">
-          <div class="weather-header-main">
-            <span class="pill">Columbus Weather Dashboard</span>
-
-            <h1 id="weather-title">Columbus, OH</h1>
-
-            <div class="weather-location">
-              Live snapshot • Fahrenheit • Next 24 hours
+            <div id="verse-ref" class="verse-ref">
+              Loading reference...
             </div>
 
-            <div class="weather-current">
-              <span class="weather-temp-now" id="current-temp">--°</span>
-              <div>
-                <div class="weather-condition">
-                  <span id="current-emoji" class="weather-emoji">☁️</span>
-                  <span id="current-summary">Loading...</span>
-                </div>
-                <div class="weather-meta" id="updated-time">Updated —</div>
+            <div id="verse-text" class="verse-text">
+              Loading verse...
+            </div>
+
+            <div id="verse-meta" class="verse-meta">
+              —
+            </div>
+
+            <div class="verse-facts">
+              <div class="verse-fact-row">
+                <span class="verse-fact-label">Author</span>
+                <span id="verse-author" class="verse-fact-value">—</span>
+              </div>
+              <div class="verse-fact-row">
+                <span class="verse-fact-label">Where</span>
+                <span id="verse-location" class="verse-fact-value">—</span>
+              </div>
+              <div class="verse-fact-row">
+                <span class="verse-fact-label">When</span>
+                <span id="verse-date" class="verse-fact-value">—</span>
               </div>
             </div>
 
-            <div class="weather-hi-lo">
-              <span>High: <strong id="high-temp">--°</strong></span>
-              <span>Low: <strong id="low-temp">--°</strong></span>
+            <div style="margin-top:10px;">
+              <a id="verse-link"
+                 class="verse-meta"
+                 href="#"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Read this verse in NIV ↗
+              </a>
             </div>
-          </div>
+          </section>
 
-          <div class="weather-tagline">
-            Current temperature &amp; conditions
-          </div>
-        </div>
+          <!-- Weather card -->
+          <section class="card weather-card">
+            <div class="weather-header">
+              <div class="weather-header-main">
+                <span class="pill">Columbus Weather Dashboard</span>
 
-        <div class="hourly-wrapper">
-          <div class="hourly-title-row">
-            <span>Next 24 hours</span>
-            <span id="hourly-label" class="muted">Hourly temperature &amp; conditions</span>
-          </div>
-          <div class="hourly-scroll" id="hourly-strip">
-            <!-- Hourly cards injected via JavaScript -->
-          </div>
+                <h1 id="weather-title">Columbus, OH</h1>
+
+                <div class="weather-location">
+                  Live snapshot • Fahrenheit • Next 24 hours
+                </div>
+
+                <div class="weather-current">
+                  <span class="weather-temp-now" id="current-temp">--°</span>
+                  <div>
+                    <div class="weather-condition">
+                      <span id="current-emoji" class="weather-emoji">☁️</span>
+                      <span id="current-summary">Loading...</span>
+                    </div>
+                    <div class="weather-meta" id="updated-time">Updated —</div>
+                  </div>
+                </div>
+
+                <div class="weather-hi-lo">
+                  <span>High: <strong id="high-temp">--°</strong></span>
+                  <span>Low: <strong id="low-temp">--°</strong></span>
+                </div>
+              </div>
+
+              <div class="weather-tagline">
+                Current temperature &amp; conditions
+              </div>
+            </div>
+
+            <div class="hourly-wrapper">
+              <div class="hourly-title-row">
+                <span>Next 24 hours</span>
+                <span id="hourly-label" class="muted">Hourly temperature &amp; conditions</span>
+              </div>
+              <div class="hourly-scroll" id="hourly-strip">
+                <!-- Hourly cards injected via JavaScript -->
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </main>
 
     <!-- FOOTER -->
@@ -891,3 +974,4 @@
   </script>
 </body>
 </html>
+
