@@ -5,21 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects — Cole Dashner</title>
   <meta name="description" content="Projects by Cole Dashner, Computer Science and Engineering student at The Ohio State University." />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#000000" />
   <style>
     :root{
-      --bg:#0b1020; /* slate-950-ish */
-      --panel:#111732; /* slate-900-ish */
-      --muted:#94a3b8; /* slate-400 */
-      --text:#e2e8f0; /* slate-200 */
-      --accent:#60a5fa; /* blue-400 */
-      --accent-2:#34d399; /* emerald-400 */
-      --ring:rgba(96,165,250,.5);
+      --bg:#000000; /* iOS-style pure black */
+      --panel:#1c1c1e; /* iOS dark secondary */
+      --muted:#8e8e93; /* iOS dark muted */
+      --text:#f2f2f7;  /* iOS label on dark */
+      --accent:#0a84ff; /* iOS system blue */
+      --accent-2:#32d74b; /* iOS system green */
+      --ring:rgba(10,132,255,.45);
       --radius:16px;
-      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --shadow:0 10px 30px rgba(0,0,0,.5);
     }
     @media (prefers-color-scheme: light){
-      :root{--bg:#f8fafc;--panel:#ffffff;--muted:#475569;--text:#0f172a;--accent:#2563eb;--accent-2:#059669;--ring:rgba(37,99,235,.25)}
+      :root{
+        --bg:#f2f2f7;
+        --panel:#ffffff;
+        --muted:#6c6c70;
+        --text:#1c1c1e;
+        --accent:#0a84ff;
+        --accent-2:#34c759;
+        --ring:rgba(10,132,255,.25)
+      }
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -39,8 +47,8 @@
     nav a{margin:0 10px; font-weight:600}
     nav a.active{color:var(--accent-2);}
     .pill{
-      display:inline-block; padding:10px 14px; border-radius:999px; background:rgba(99,102,241,.12);
-      border:1px solid rgba(99,102,241,.4); color:var(--text); text-decoration:none;
+      display:inline-block; padding:10px 14px; border-radius:999px; background:rgba(10,132,255,.12);
+      border:1px solid rgba(10,132,255,.45); color:var(--text); text-decoration:none;
     }
     .btn{display:inline-block; padding:10px 14px; border-radius:10px; font-weight:600; text-decoration:none; box-shadow:var(--shadow); font-size:0.9rem}
     .btn-primary{background:var(--accent); color:white}
