@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#000000" />
 
   <!-- =======================
-       FONTS (Variable Font)
+       VARIABLE FONT
        ======================= -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
 
@@ -19,22 +19,23 @@
        STYLES
        ======================= -->
   <style>
+
     /* =======================
        THEME & COLOR TOKENS
        ======================= */
     :root{
-      --bg:#000000; /* iOS-style pure black */
-      --panel:#1c1c1e; /* iOS dark secondary */
-      --muted:#8e8e93; /* iOS dark muted */
-      --text:#f2f2f7;  /* iOS label on dark */
-      --accent:#0a84ff; /* iOS system blue */
-      --accent-2:#32d74b; /* iOS system green */
+      --bg:#000000;
+      --panel:#1c1c1e;
+      --muted:#8e8e93;
+      --text:#f2f2f7;
+      --accent:#0a84ff;
+      --accent-2:#32d74b;
       --ring:rgba(10,132,255,.45);
       --radius:16px;
       --shadow:0 10px 30px rgba(0,0,0,.5);
     }
 
-    /* Light-mode overrides if user prefers light color scheme */
+    /* Light mode */
     @media (prefers-color-scheme: light){
       :root{
         --bg:#f2f2f7;
@@ -48,13 +49,14 @@
     }
 
     /* =======================
-       GLOBAL RESETS & BASE
+       GLOBAL BASE
        ======================= */
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.15), transparent 60%),
         radial-gradient(900px 500px at 110% 0%, rgba(52,211,153,.10), transparent 50%),
@@ -62,20 +64,43 @@
       color:var(--text);
       line-height:1.6;
     }
+
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
-    .container{max-width:1100px; margin:0 auto; padding:24px}
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px;
+    }
 
     /* =======================
        HEADER & NAV
        ======================= */
-    header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
-    .logo{font-weight:800; letter-spacing:.5px}
-    nav a{margin:0 10px; font-weight:600}
-    nav a.active{color:var(--accent-2);}
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 0;
+    }
+
+    .logo{
+      font-weight:800;
+      letter-spacing:.5px;
+    }
+
+    nav a{
+      margin:0 10px;
+      font-weight:600;
+    }
+
+    nav a.active{
+      color:var(--accent-2);
+    }
 
     /* =======================
-       BADGES & BUTTONS
+       BUTTONS & BADGES
        ======================= */
     .pill{
       display:inline-block;
@@ -83,40 +108,38 @@
       border-radius:999px;
       background:rgba(10,132,255,.12);
       border:1px solid rgba(10,132,255,.45);
-      color:var(--text);
-      text-decoration:none;
-      font-size:0.9rem;
+      font-size:.9rem;
     }
+
     .btn{
       display:inline-block;
       padding:10px 14px;
       border-radius:10px;
       font-weight:600;
-      text-decoration:none;
+      font-size:.9rem;
       box-shadow:var(--shadow);
-      font-size:0.9rem;
     }
-    .btn-secondary{background:var(--panel); color:var(--text); border:1px solid rgba(148,163,184,.3)}
+
+    .btn-secondary{
+      background:var(--panel);
+      color:var(--text);
+      border:1px solid rgba(148,163,184,.3);
+    }
 
     /* =======================
        TYPOGRAPHY
        ======================= */
-    h1{font-size:clamp(28px, 6vw, 40px); line-height:1.2; margin:0 0 12px}
+    h1{font-size:clamp(28px, 6vw, 40px); margin:0 0 12px}
     h2{font-size:clamp(22px, 3.2vw, 28px); margin:0 0 10px}
-    h3{margin-top:0; margin-bottom:6px}
+    h3{margin:0 0 6px}
     .muted{color:var(--muted)}
 
     /* =======================
-       LAYOUT / SECTIONS
+       LAYOUT
        ======================= */
     .section{margin-top:30px}
-
-    /* =======================
-       GRID
-       ======================= */
     .grid{display:grid; gap:18px}
     .grid.cols-3{grid-template-columns:repeat(3, 1fr)}
-    .grid.cols-2{grid-template-columns:repeat(2, 1fr)}
 
     /* =======================
        CARDS
@@ -128,11 +151,14 @@
       padding:22px;
       box-shadow:var(--shadow);
 
-      /* ✅ Equal-height cards + bottom-aligned actions */
+      /* Equal height cards */
       display:flex;
       flex-direction:column;
     }
-    .card-actions{ margin-top:auto; }
+
+    .card-actions{
+      margin-top:auto;
+    }
 
     /* =======================
        FOOTER
@@ -141,32 +167,30 @@
       padding:30px 0;
       font-size:14px;
       color:var(--muted);
-      text-align:center
+      text-align:center;
     }
 
+    /* =======================
+       RESPONSIVE
+       ======================= */
     @media (max-width: 900px){
       header{flex-direction:column; align-items:flex-start}
       .grid.cols-3{grid-template-columns:1fr}
-      .grid.cols-2{grid-template-columns:1fr}
     }
 
     /* =======================
        VARIABLE FONT NAME
        ======================= */
-    .variable-proximity {
-      font-family: 'Roboto Flex', sans-serif;
-      display: inline;
-      position: relative;
+    .variable-proximity{
+      font-family:'Roboto Flex', sans-serif;
+      display:inline;
+      position:relative;
     }
-    .variable-proximity .word {
-      display: inline-block;
-      white-space: nowrap;
-    }
-    .variable-proximity .letter {
-      display: inline-block;
-      will-change: font-variation-settings;
-    }
-    .sr-only {
+
+    .variable-proximity .word{display:inline-block; white-space:nowrap}
+    .variable-proximity .letter{display:inline-block; will-change:font-variation-settings}
+
+    .sr-only{
       position:absolute;
       width:1px;
       height:1px;
@@ -177,6 +201,7 @@
       white-space:nowrap;
       border:0;
     }
+
   </style>
 </head>
 
@@ -187,8 +212,7 @@
          HEADER
          ======================= -->
     <header>
-      <!-- ✅ Reactive animated name (copied from about.html) -->
-      <div id="name-container" class="logo" style="position: relative;">
+      <div id="name-container" class="logo" style="position:relative;">
         <span
           id="variable-proximity"
           class="variable-proximity"
@@ -212,21 +236,17 @@
          MAIN CONTENT
          ======================= -->
     <main>
-      <!-- =======================
-           PAGE INTRO
-           ======================= -->
+
+      <!-- Intro -->
       <section class="section">
         <span class="pill">Projects</span>
         <h1>Things I’ve built</h1>
         <p class="muted">
-          Here are a few projects that represent what I like working on right now:
-          systems, tooling, and experiments that teach me something new.
+          Systems, tooling, and experiments that teach me something new.
         </p>
       </section>
 
-      <!-- =======================
-           FEATURED PROJECTS
-           ======================= -->
+      <!-- Featured Projects -->
       <section class="section">
         <h2>Featured</h2>
 
@@ -236,14 +256,14 @@
           <article class="card">
             <h3>Network Traffic IDS</h3>
             <p class="muted">
-              Virtualized lab in Ubuntu to capture live traffic with Wireshark/tshark, then
-              preprocess and feed features into a machine learning model to flag suspicious flows.
+              Virtualized Ubuntu lab capturing live traffic and feeding features into ML models
+              to flag suspicious flows.
             </p>
-            <p class="muted"><strong>Tech:</strong> Python, Ubuntu, Wireshark/tshark, ML (e.g. tree-based models)</p>
+            <p class="muted"><strong>Tech:</strong> Python, Ubuntu, Wireshark, ML</p>
 
             <div class="card-actions">
               <a class="btn btn-secondary"
-                 href="https://github.com/dashnercole/Network-Intrusion-System-IDS-"
+                 href="https://github.com/dashnercole"
                  target="_blank" rel="noopener">
                 View repo
               </a>
@@ -254,13 +274,14 @@
           <article class="card">
             <h3>MATLAB Match-3 Game</h3>
             <p class="muted">
-              A Match-3 style game built in MATLAB with custom sprite handling, cascade logic,
-              scoring, and a simple UI. Focused on clean game loop design and state management.
+              Match-3 game with sprite handling, cascade logic, scoring, and a clean game loop.
             </p>
-            <p class="muted"><strong>Tech:</strong> MATLAB, GUI, basic game architecture</p>
+            <p class="muted"><strong>Tech:</strong> MATLAB, GUI</p>
 
             <div class="card-actions">
-              <a class="btn btn-secondary" href="#" target="_blank" rel="noopener">
+              <a class="btn btn-secondary"
+                 href="https://github.com/dashnercole"
+                 target="_blank" rel="noopener">
                 View repo
               </a>
             </div>
@@ -270,13 +291,14 @@
           <article class="card">
             <h3>Java Scoreboard</h3>
             <p class="muted">
-              Console-based scoreboard manager that tracks players/teams using ArrayLists with
-              a menu-driven interface. Emphasizes separation of concerns and readable code.
+              Console-based scoreboard using ArrayLists and a menu-driven interface.
             </p>
-            <p class="muted"><strong>Tech:</strong> Java, ArrayList, OOP</p>
+            <p class="muted"><strong>Tech:</strong> Java, OOP</p>
 
             <div class="card-actions">
-              <a class="btn btn-secondary" href="#" target="_blank" rel="noopener">
+              <a class="btn btn-secondary"
+                 href="https://github.com/dashnercole"
+                 target="_blank" rel="noopener">
                 View repo
               </a>
             </div>
@@ -285,32 +307,29 @@
         </div>
       </section>
 
-      <!-- =======================
-           MORE WORK
-           ======================= -->
+      <!-- More work -->
       <section class="section">
         <h2>More work</h2>
         <div class="card">
           <p class="muted">
-            I’m still adding more projects here. Over time this page will include smaller tools,
-            class assignments that turned into something interesting, and any personal experiments
-            that are worth sharing.
+            More projects and experiments are coming soon.
           </p>
           <p>
-            For now, you can also see what I’ve been pushing recently on GitHub:
+            GitHub:
             <a href="https://github.com/dashnercole" target="_blank" rel="noopener">
               github.com/dashnercole
-            </a>.
+            </a>
           </p>
         </div>
       </section>
+
     </main>
 
     <!-- =======================
          FOOTER
          ======================= -->
     <footer class="footer">
-      © <span id="year"></span> Cole Dashner — All projects on this site are my own unless credited.
+      © <span id="year"></span> Cole Dashner
     </footer>
   </div>
 
@@ -318,108 +337,61 @@
        SCRIPTS
        ======================= -->
   <script>
-    /* =======================
-       YEAR
-       ======================= */
+    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* =======================
-       REACTIVE NAME (copied from about.html)
-       ======================= */
+    // reactive name (same as about.html)
     (function(){
-      const parseSettings = (str) => {
-        const map = new Map();
-        str.split(',').map(s => s.trim()).forEach(entry => {
-          const parts = entry.trim().split(' ');
-          const axisRaw = parts[0];
-          const valRaw = parts[1];
-          map.set(axisRaw.replace(/['"]/g, ''), parseFloat(valRaw));
+      const parseSettings = (str)=>{
+        const map=new Map();
+        str.split(',').map(s=>s.trim()).forEach(e=>{
+          const p=e.split(' ');
+          map.set(p[0].replace(/['"]/g,''),parseFloat(p[1]));
         });
         return map;
       };
-      const lerp = (a,b,t)=>a+(b-a)*t;
-      const dist = (x1,y1,x2,y2)=>Math.hypot(x2-x1,y2-y1);
-      const falloffFn = (type, d, r) => {
-        const n = Math.min(Math.max(1 - d/r, 0), 1);
-        if (type === 'exponential') return n*n;
-        if (type === 'gaussian') return Math.exp(-((d/(r/2))*(d/(r/2)))/2);
-        return n; // linear
-      };
+      const lerp=(a,b,t)=>a+(b-a)*t;
+      const dist=(x1,y1,x2,y2)=>Math.hypot(x2-x1,y2-y1);
 
-      const container = document.getElementById('name-container');
-      const span = document.getElementById('variable-proximity');
-      if (!container || !span) return;
+      const container=document.getElementById('name-container');
+      const span=document.getElementById('variable-proximity');
+      if(!container||!span)return;
 
-      const label = span.dataset.label || 'Cole Dashner';
-      const fromStr = span.dataset.from || "'wght' 400, 'opsz' 12";
-      const toStr   = span.dataset.to   || "'wght' 1000, 'opsz' 40";
-      const radius  = Number(span.dataset.radius || 100);
-      const falloff = (span.dataset.falloff || 'linear').toLowerCase();
+      const label=span.dataset.label;
+      const fromStr=span.dataset.from;
+      const toStr=span.dataset.to;
+      const radius=Number(span.dataset.radius);
 
-      const from = parseSettings(fromStr);
-      const to   = parseSettings(toStr);
-      const axes = Array.from(from.entries()).map(([axis, fromVal]) => ({
-        axis, fromVal, toVal: to.has(axis) ? to.get(axis) : fromVal
-      }));
+      const from=parseSettings(fromStr);
+      const to=parseSettings(toStr);
+      const axes=[...from.entries()].map(([a,f])=>({a,f,t:to.get(a)||f}));
 
-      span.innerHTML = '';
-      const words = label.split(' ');
-      const letters = [];
-      words.forEach((word, wi) => {
-        const w = document.createElement('span');
-        w.className = 'word';
-        word.split('').forEach(ch => {
-          const l = document.createElement('span');
-          l.className = 'letter';
-          l.textContent = ch;
-          l.style.fontVariationSettings = fromStr;
-          w.appendChild(l);
-          letters.push(l);
-        });
-        span.appendChild(w);
-        if (wi < words.length - 1) span.appendChild(document.createTextNode(' '));
+      span.innerHTML='';
+      const letters=[];
+      label.split('').forEach(ch=>{
+        const l=document.createElement('span');
+        l.className='letter';
+        l.textContent=ch;
+        l.style.fontVariationSettings=fromStr;
+        span.appendChild(l);
+        letters.push(l);
       });
-      const sr = document.createElement('span');
-      sr.className = 'sr-only';
-      sr.textContent = label;
-      span.appendChild(sr);
 
-      const pos = { x: 0, y: 0 };
-      const updatePos = (cx, cy) => {
-        const rect = container.getBoundingClientRect();
-        pos.x = cx - rect.left;
-        pos.y = cy - rect.top;
-      };
+      const pos={x:0,y:0};
+      container.addEventListener('mousemove',e=>{
+        const r=container.getBoundingClientRect();
+        pos.x=e.clientX-r.left;
+        pos.y=e.clientY-r.top;
+      });
 
-      container.addEventListener('mousemove', e => updatePos(e.clientX, e.clientY), { passive:true });
-      container.addEventListener('touchmove', e => {
-        if (e.touches[0]) updatePos(e.touches[0].clientX, e.touches[0].clientY);
-      }, { passive:true });
-
-      let last = { x:null, y:null };
       function frame(){
-        if (last.x !== pos.x || last.y !== pos.y) {
-          last = { x: pos.x, y: pos.y };
-          const cRect = container.getBoundingClientRect();
-
-          letters.forEach(el => {
-            const r = el.getBoundingClientRect();
-            const cx = (r.left + r.width/2) - cRect.left;
-            const cy = (r.top + r.height/2) - cRect.top;
-            const d = dist(pos.x, pos.y, cx, cy);
-
-            if (d >= radius) {
-              el.style.fontVariationSettings = axes
-                .map(({axis, fromVal}) => `'${axis}' ${fromVal}`)
-                .join(', ');
-            } else {
-              const t = falloffFn(falloff, d, radius);
-              el.style.fontVariationSettings = axes
-                .map(({axis, fromVal, toVal}) => `'${axis}' ${lerp(fromVal, toVal, t)}`)
-                .join(', ');
-            }
-          });
-        }
+        const r0=container.getBoundingClientRect();
+        letters.forEach(el=>{
+          const r=el.getBoundingClientRect();
+          const d=dist(pos.x,pos.y,(r.left+r.width/2)-r0.left,(r.top+r.height/2)-r0.top);
+          const t=Math.max(0,1-d/radius);
+          el.style.fontVariationSettings=axes.map(o=>`'${o.a}' ${lerp(o.f,o.t,t)}`).join(', ');
+        });
         requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
