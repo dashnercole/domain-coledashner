@@ -27,22 +27,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
 
   <style>
-    /* =======================
-       THEME & COLOR TOKENS
-       ======================= */
     :root{
-      --bg:#000000; /* iOS-style pure black */
-      --panel:#1c1c1e; /* iOS dark secondary */
-      --muted:#8e8e93; /* iOS dark muted */
-      --text:#f2f2f7;  /* iOS label on dark */
-      --accent:#0a84ff; /* iOS system blue */
-      --accent-2:#32d74b; /* iOS system green */
+      --bg:#000000;
+      --panel:#1c1c1e;
+      --muted:#8e8e93;
+      --text:#f2f2f7;
+      --accent:#0a84ff;
+      --accent-2:#32d74b;
       --ring:rgba(10,132,255,.45);
       --radius:16px;
       --shadow:0 10px 30px rgba(0,0,0,.5);
     }
 
-    /* Light-mode overrides if user prefers light color scheme */
     @media (prefers-color-scheme: light){
       :root{
         --bg:#f2f2f7;
@@ -51,13 +47,10 @@
         --text:#1c1c1e;
         --accent:#0a84ff;
         --accent-2:#34c759;
-        --ring:rgba(10,132,255,.25)
+        --ring:rgba(10,132,255,.25);
       }
     }
 
-    /* =======================
-       GLOBAL RESETS & BASE
-       ======================= */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -70,28 +63,24 @@
       color:var(--text);
       line-height:1.6;
     }
+
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px; margin:0 auto; padding:24px}
 
-    /* =======================
-       HEADER & NAV
-       ======================= */
     header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
     .logo{font-weight:800; letter-spacing:.5px}
     nav a{margin:0 10px; font-weight:600}
     nav a.active{color:var(--accent-2);}
 
-    /* =======================
-       CARD & LAYOUT
-       ======================= */
     .card{
       background:var(--panel);
       border:1px solid rgba(148,163,184,.18);
       border-radius:var(--radius);
       padding:22px;
-      box-shadow:var(--shadow)
+      box-shadow:var(--shadow);
     }
+
     h1{font-size:clamp(28px, 5vw, 40px); margin:0 0 12px}
     h2{font-size:clamp(22px, 3vw, 28px); margin:0 0 10px}
     .muted{color:var(--muted)}
@@ -99,9 +88,6 @@
     .grid{display:grid; gap:18px}
     .grid.cols-2{grid-template-columns:repeat(2, 1fr)}
 
-    /* =======================
-       BADGES & TAGS
-       ======================= */
     .pill{
       display:inline-block;
       padding:10px 14px;
@@ -112,6 +98,7 @@
       text-decoration:none;
       font-size:0.9rem;
     }
+
     .tag{
       display:inline-block;
       padding:6px 10px;
@@ -119,17 +106,14 @@
       border:1px solid rgba(148,163,184,.25);
       border-radius:999px;
       font-size:12px;
-      margin:4px 6px 0 0
+      margin:4px 6px 0 0;
     }
 
-    /* =======================
-       FOOTER
-       ======================= */
     .footer{
       padding:30px 0;
       font-size:14px;
       color:var(--muted);
-      text-align:center
+      text-align:center;
     }
 
     ul{padding-left:18px}
@@ -139,22 +123,22 @@
       .grid.cols-2{grid-template-columns:1fr}
     }
 
-    /* =======================
-       VARIABLE FONT NAME
-       ======================= */
     .variable-proximity {
       font-family: 'Roboto Flex', sans-serif;
       display: inline;
       position: relative;
     }
+
     .variable-proximity .word {
       display: inline-block;
       white-space: nowrap;
     }
+
     .variable-proximity .letter {
       display: inline-block;
       will-change: font-variation-settings;
     }
+
     .sr-only {
       position:absolute;
       width:1px;
@@ -168,10 +152,10 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
-      <!-- same animated name as home -->
       <div id="name-container" class="logo" style="position: relative;">
         <span
           id="variable-proximity"
@@ -183,6 +167,7 @@
           data-falloff="linear"
         ></span>
       </div>
+
       <nav>
         <a href="/">Home</a>
         <a href="about.html" class="active">About</a>
@@ -194,7 +179,7 @@
     <main>
       <section class="section">
         <span class="pill">About Me</span>
-        <h1>Hi, I’m Cole </h1>
+        <h1>Hi, I’m Cole</h1>
         <p class="muted">
           I’m a Computer Science & Engineering student at The Ohio State University who enjoys
           building things that are both technically solid and actually useful. I like working in that
@@ -205,21 +190,21 @@
       <section class="section card">
         <h2>About Me</h2>
         <p>
-          I’m a Computer Science and Engineering student at The Ohio State University with a strong 
-          foundation in both technical problem problem solving and people centered leadership. 
-          My life and work are shaped by my faith in Jesus, a commitment to integrity, and desire to
-          serve others well. Outside the classroom, I've grown through experiences in athletics, 
-          coaching, and ministry, where I've learned how to lead teams, communicate clearly, and
+          I’m a Computer Science and Engineering student at The Ohio State University with a strong
+          foundation in technical problem solving and people-centered leadership.
+          My life and work are shaped by my faith in Jesus, a commitment to integrity, and a desire to
+          serve others well. Outside the classroom, I’ve grown through experiences in athletics,
+          coaching, and ministry, where I’ve learned how to lead teams, communicate clearly, and
           support people through challenges. I enjoy building practical, impactful solutions, whether
-          that's a smart parking system, analytical tools, or software that makes everyday tasks 
-          easier. I approach every project with a focus on reliability, clarity, and long-term value. 
-          This site highlights the projects I'm developing and reflects the kind of engineer and
-          leader I strive to be. 
+          that’s a smart parking system, analytical tools, or software that makes everyday tasks
+          easier. I approach every project with a focus on reliability, clarity, and long-term value.
+          This site highlights the projects I’m developing and reflects the kind of engineer and
+          leader I strive to be.
         </p>
         <p>
-          Many of my projects begin with a simple question: "Can I build this myself?".
-          Whether that means designing a smart parking system, analyzing network traffic, or tuning a 
-          standard class assignment into a more refined, real world solution. 
+          Many of my projects begin with a simple question: “Can I build this myself?”
+          Whether that means designing a smart parking system, analyzing network traffic, or turning a
+          standard class assignment into a more refined, real-world solution.
         </p>
       </section>
 
@@ -239,7 +224,7 @@
             <div class="tag">Linux</div>
           </div>
           <p class="muted" style="margin-top:12px;">
-            I’m still actively learning and improving—these are just the tools I reach for most often.
+            I’m still actively learning and improving — these are just the tools I reach for most often.
           </p>
         </div>
 
@@ -248,7 +233,7 @@
           <ul>
             <li>Understanding systems and networks beyond the surface level.</li>
             <li>Using data to make smarter, real-world decisions.</li>
-            <li>Implementing AI and machine learning in practical applications.”</li>
+            <li>Implementing AI and machine learning in practical applications.</li>
             <li>Continuously improving how I think, learn, and build as an engineer.</li>
           </ul>
         </div>
@@ -272,16 +257,16 @@
           <a href="mailto:dashnercole@gmail.com">dashnercole@gmail.com</a>
         </p>
       </section>
-    </main>
 
       <section class="section card">
         <h2>Outside of code</h2>
         <p>
-          When I’m not staring at a terminal, I care a lot about people and community—whether that’s
-          through sports, friends, or serving in different roles. I like working on teams, especially
-          where everyone brings something different to the table and we’re building toward a shared goal.
+          When I’m not working on code, I care a lot about people, community, and personal growth.
+          I enjoy spending time with friends, playing and following sports, serving in ministry, and
+          being part of teams where people encourage each other and work toward a shared goal.
         </p>
       </section>
+    </main>
 
     <footer class="footer">
       © <span id="year"></span> Cole Dashner
@@ -289,10 +274,8 @@
   </div>
 
   <script>
-    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // hover effect for name (same as on the home page)
     (function(){
       const parseSettings = (str) => {
         const map = new Map();
@@ -304,13 +287,15 @@
         });
         return map;
       };
+
       const lerp = (a,b,t)=>a+(b-a)*t;
       const dist = (x1,y1,x2,y2)=>Math.hypot(x2-x1,y2-y1);
+
       const falloffFn = (type, d, r) => {
         const n = Math.min(Math.max(1 - d/r, 0), 1);
         if (type === 'exponential') return n*n;
         if (type === 'gaussian') return Math.exp(-((d/(r/2))*(d/(r/2)))/2);
-        return n; // linear
+        return n;
       };
 
       const container = document.getElementById('name-container');
@@ -319,22 +304,27 @@
 
       const label = span.dataset.label || 'Cole Dashner';
       const fromStr = span.dataset.from || "'wght' 400, 'opsz' 12";
-      const toStr   = span.dataset.to   || "'wght' 1000, 'opsz' 40";
-      const radius  = Number(span.dataset.radius || 100);
+      const toStr = span.dataset.to || "'wght' 1000, 'opsz' 40";
+      const radius = Number(span.dataset.radius || 100);
       const falloff = (span.dataset.falloff || 'linear').toLowerCase();
 
       const from = parseSettings(fromStr);
-      const to   = parseSettings(toStr);
+      const to = parseSettings(toStr);
+
       const axes = Array.from(from.entries()).map(([axis, fromVal]) => ({
-        axis, fromVal, toVal: to.has(axis) ? to.get(axis) : fromVal
+        axis,
+        fromVal,
+        toVal: to.has(axis) ? to.get(axis) : fromVal
       }));
 
       span.innerHTML = '';
       const words = label.split(' ');
       const letters = [];
+
       words.forEach((word, wi) => {
         const w = document.createElement('span');
         w.className = 'word';
+
         word.split('').forEach(ch => {
           const l = document.createElement('span');
           l.className = 'letter';
@@ -343,32 +333,43 @@
           w.appendChild(l);
           letters.push(l);
         });
+
         span.appendChild(w);
         if (wi < words.length - 1) span.appendChild(document.createTextNode(' '));
       });
+
       const sr = document.createElement('span');
-      sr.className = 'sr-only'; sr.textContent = label; span.appendChild(sr);
+      sr.className = 'sr-only';
+      sr.textContent = label;
+      span.appendChild(sr);
 
       const pos = { x: 0, y: 0 };
+
       const updatePos = (cx, cy) => {
         const rect = container.getBoundingClientRect();
-        pos.x = cx - rect.left; pos.y = cy - rect.top;
+        pos.x = cx - rect.left;
+        pos.y = cy - rect.top;
       };
+
       container.addEventListener('mousemove', e => updatePos(e.clientX, e.clientY), { passive:true });
+
       container.addEventListener('touchmove', e => {
         if (e.touches[0]) updatePos(e.touches[0].clientX, e.touches[0].clientY);
       }, { passive:true });
 
       let last = { x:null, y:null };
+
       function frame(){
         if (last.x !== pos.x || last.y !== pos.y) {
           last = { x: pos.x, y: pos.y };
           const cRect = container.getBoundingClientRect();
+
           letters.forEach(el => {
             const r = el.getBoundingClientRect();
-            const cx = (r.left + r.width/2) - cRect.left;
-            const cy = (r.top + r.height/2) - cRect.top;
+            const cx = (r.left + r.width / 2) - cRect.left;
+            const cy = (r.top + r.height / 2) - cRect.top;
             const d = dist(pos.x, pos.y, cx, cy);
+
             if (d >= radius) {
               el.style.fontVariationSettings = axes
                 .map(({axis, fromVal}) => `'${axis}' ${fromVal}`)
@@ -381,11 +382,12 @@
             }
           });
         }
+
         requestAnimationFrame(frame);
       }
+
       requestAnimationFrame(frame);
     })();
   </script>
 </body>
 </html>
-
