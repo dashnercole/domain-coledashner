@@ -15,7 +15,7 @@
   <meta name="author" content="Cole Dashner" />
   <meta name="robots" content="index,follow" />
 
-  <!-- Social sharing (Open Graph) -->
+  <!-- Social sharing -->
   <meta property="og:title" content="About — Cole Dashner" />
   <meta
     property="og:description"
@@ -150,6 +150,56 @@
       white-space:nowrap;
       border:0;
     }
+
+    /* Portfolio Assistant styling */
+    .cole-ai-box {
+      margin-top: 20px;
+    }
+
+    #cole-ai-question {
+      width: 100%;
+      min-height: 140px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,.25);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 15px;
+      resize: vertical;
+    }
+
+    #cole-ai-question:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    .cole-ai-box button {
+      margin-top: 12px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .cole-ai-box button:hover {
+      transform: translateY(-2px);
+    }
+
+    #cole-ai-answer {
+      margin-top: 16px;
+      min-height: 60px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(148,163,184,.08);
+      line-height: 1.6;
+      color: var(--text);
+    }
   </style>
 </head>
 
@@ -181,27 +231,33 @@
         <span class="pill">About Me</span>
         <h1>Hi, I’m Cole</h1>
         <p class="muted">
-          I’m a Computer Science & Engineering student at The Ohio State University who enjoys
-          building things that are both technically solid and actually useful. I like working in that
-          space where code, data, and real-world problems overlap.
+          I’m a Computer Science & Engineering student at The Ohio State University
+          with interests in software engineering, artificial intelligence, cybersecurity,
+          systems, and data-driven technologies. I enjoy building practical solutions
+          that solve real-world problems while continuously learning new technologies
+          and improving as an engineer, teammate, and leader.
         </p>
       </section>
 
       <section class="section card">
         <h2>Portfolio Assistant</h2>
-        <p>
-          Ask questions about Cole's projects, skills, education, interest, and experience. This AI is designed to answer using verified information only.
+        <p class="muted">
+          Ask questions about my projects, education, technical skills, experience,
+          interests, and career goals. Responses are generated using verified
+          information from my portfolio and professional background.
         </p>
 
         <div class="cole-ai-box">
           <textarea
             id="cole-ai-question"
-              placeholder="Ask about my projects, skills, education, or experience..."
-            ></textarea>
+            placeholder="Ask about my projects, skills, education, or experience..."
+          ></textarea>
 
-          <button onclick="askColeAI()">Ask</button>
+          <button onclick="askColeAI()">Ask Assistant</button>
 
-          <div id="cole-ai-answer"></div>
+          <div id="cole-ai-answer">
+            Ask a question to get started.
+          </div>
         </div>
       </section>
 
@@ -272,6 +328,37 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    async function askColeAI() {
+      const question = document.getElementById("cole-ai-question").value.trim();
+      const answerBox = document.getElementById("cole-ai-answer");
+
+      if (!question) {
+        answerBox.textContent = "Please enter a question.";
+        return;
+      }
+
+      answerBox.textContent = "Thinking...";
+
+      try {
+        const response = await fetch(
+          "https://YOUR-VERCEL-BACKEND.vercel.app/api/ask",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ question })
+          }
+        );
+
+        const data = await response.json();
+        answerBox.textContent = data.answer || "No answer returned.";
+      } catch (error) {
+        answerBox.textContent = "Sorry, the Portfolio Assistant is currently unavailable.";
+        console.error(error);
+      }
+    }
 
     (function(){
       const parseSettings = (str) => {
@@ -387,4 +474,5 @@
     })();
   </script>
 </body>
+</html>
 </html>
