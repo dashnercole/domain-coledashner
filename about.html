@@ -188,24 +188,21 @@
       </section>
 
       <section class="section card">
-        <h2>About Me</h2>
+        <h2>Portfolio Assistant</h2>
         <p>
-          I’m a Computer Science and Engineering student at The Ohio State University with a strong
-          foundation in technical problem solving and people-centered leadership.
-          My life and work are shaped by my faith in Jesus, a commitment to integrity, and a desire to
-          serve others well. Outside the classroom, I’ve grown through experiences in athletics,
-          coaching, and ministry, where I’ve learned how to lead teams, communicate clearly, and
-          support people through challenges. I enjoy building practical, impactful solutions, whether
-          that’s a smart parking system, analytical tools, or software that makes everyday tasks
-          easier. I approach every project with a focus on reliability, clarity, and long-term value.
-          This site highlights the projects I’m developing and reflects the kind of engineer and
-          leader I strive to be.
+          Ask questions about Cole's projects, skills, education, interest, and experience. This AI is designed to answer using verified information only.
         </p>
-        <p>
-          Many of my projects begin with a simple question: “Can I build this myself?”
-          Whether that means designing a smart parking system, analyzing network traffic, or turning a
-          standard class assignment into a more refined, real-world solution.
-        </p>
+
+        <div class="cole-ai-box">
+          <textarea
+            id="cole-ai-question"
+              placeholder="Ask about my projects, skills, education, or experience..."
+            ></textarea>
+
+          <button onclick="askColeAI()">Ask</button>
+
+          <div id="cole-ai-answer"></div>
+        </div>
       </section>
 
       <section class="section grid cols-2">
