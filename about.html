@@ -152,54 +152,63 @@
     }
 
     /* Portfolio Assistant styling */
-    .cole-ai-box {
-      margin-top: 20px;
-    }
+.cole-ai-box {
+  margin-top: 20px;
+}
 
-    #cole-ai-question {
-      width: 100%;
-      min-height: 140px;
-      padding: 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(148,163,184,.25);
-      background: rgba(0,0,0,.25);
-      color: var(--text);
-      font-family: inherit;
-      font-size: 15px;
-      resize: vertical;
-    }
+#cole-ai-question {
+  width: 100%;
+  min-height: 140px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(148,163,184,.25);
+  background: rgba(0,0,0,.25);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  resize: vertical;
+}
 
-    #cole-ai-question:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px var(--ring);
-    }
+#cole-ai-question:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--ring);
+}
 
-    .cole-ai-box button {
-      margin-top: 12px;
-      padding: 12px 18px;
-      border: none;
-      border-radius: 12px;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
+.cole-ai-submit {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), #32d74b);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(10,132,255,.25);
+}
 
-    .cole-ai-box button:hover {
-      transform: translateY(-2px);
-    }
+.cole-ai-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(10,132,255,.35);
+}
 
-    #cole-ai-answer {
-      margin-top: 16px;
-      min-height: 60px;
-      padding: 14px;
-      border-radius: 12px;
-      background: rgba(148,163,184,.08);
-      line-height: 1.6;
-      color: var(--text);
-    }
+.cole-ai-submit:active {
+  transform: translateY(0);
+}
+
+#cole-ai-answer {
+  margin-top: 16px;
+  min-height: 60px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(148,163,184,.08);
+  line-height: 1.6;
+  color: var(--text);
+}
   </style>
 </head>
 
@@ -253,8 +262,9 @@
             placeholder="Ask about my projects, skills, education, or experience..."
           ></textarea>
 
-          <button onclick="askColeAI()">Ask Assistant</button>
-
+          <button class="cole-ai-submit" onclick="askColeAI()">
+            Ask Assistant <span>→</span>
+          </button>
           <div id="cole-ai-answer">
             Ask a question to get started.
           </div>
@@ -329,150 +339,193 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    async function askColeAI() {
-      const question = document.getElementById("cole-ai-question").value.trim();
-      const answerBox = document.getElementById("cole-ai-answer");
+/* ===================================================== */
+/* PORTFOLIO ASSISTANT                                   */
+/* Handles AI questions and sends them to your backend    */
+/* ===================================================== */
 
-      if (!question) {
-        answerBox.textContent = "Please enter a question.";
-        return;
+async function askColeAI() {
+  const questionInput = document.getElementById("cole-ai-question");
+  const question = questionInput.value.trim();
+  const answerBox = document.getElementById("cole-ai-answer");
+
+  if (!question) {
+    answerBox.textContent = "Please enter a question.";
+    return;
+  }
+
+  answerBox.textContent = "Thinking...";
+
+  try {
+    const response = await fetch(
+      "https://YOUR-VERCEL-BACKEND.vercel.app/api/ask",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ question })
       }
+    );
 
-      answerBox.textContent = "Thinking...";
+    const data = await response.json();
+    answerBox.textContent = data.answer || "No answer returned.";
+  } catch (error) {
+    answerBox.textContent =
+      "Sorry, the Portfolio Assistant is currently unavailable.";
+    console.error(error);
+  }
+}
 
-      try {
-        const response = await fetch(
-          "https://YOUR-VERCEL-BACKEND.vercel.app/api/ask",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ question })
-          }
-        );
+/* ===================================================== */
+/* ENTER KEY SUBMIT                                      */
+/* Enter sends the prompt, Shift + Enter makes new line   */
+/* ===================================================== */
 
-        const data = await response.json();
-        answerBox.textContent = data.answer || "No answer returned.";
-      } catch (error) {
-        answerBox.textContent = "Sorry, the Portfolio Assistant is currently unavailable.";
-        console.error(error);
+document.addEventListener("DOMContentLoaded", function () {
+  const coleAIQuestionBox = document.getElementById("cole-ai-question");
+
+  if (!coleAIQuestionBox) return;
+
+  coleAIQuestionBox.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      askColeAI();
+    }
+  });
+});
+
+/* ===================================================== */
+/* NAME ANIMATION CODE                                   */
+/* Controls the animated Cole Dashner logo in the header  */
+/* ===================================================== */
+
+(function(){
+  const parseSettings = (str) => {
+    const map = new Map();
+    str.split(',').map(s => s.trim()).forEach(entry => {
+      const parts = entry.trim().split(' ');
+      const axisRaw = parts[0];
+      const valRaw = parts[1];
+      map.set(axisRaw.replace(/['"]/g, ''), parseFloat(valRaw));
+    });
+    return map;
+  };
+
+  const lerp = (a,b,t)=>a+(b-a)*t;
+  const dist = (x1,y1,x2,y2)=>Math.hypot(x2-x1,y2-y1);
+
+  const falloffFn = (type, d, r) => {
+    const n = Math.min(Math.max(1 - d/r, 0), 1);
+    if (type === 'exponential') return n*n;
+    if (type === 'gaussian') return Math.exp(-((d/(r/2))*(d/(r/2)))/2);
+    return n;
+  };
+
+  const container = document.getElementById('name-container');
+  const span = document.getElementById('variable-proximity');
+  if (!container || !span) return;
+
+  const label = span.dataset.label || 'Cole Dashner';
+  const fromStr = span.dataset.from || "'wght' 400, 'opsz' 12";
+  const toStr = span.dataset.to || "'wght' 1000, 'opsz' 40";
+  const radius = Number(span.dataset.radius || 100);
+  const falloff = (span.dataset.falloff || 'linear').toLowerCase();
+
+  const from = parseSettings(fromStr);
+  const to = parseSettings(toStr);
+
+  const axes = Array.from(from.entries()).map(([axis, fromVal]) => ({
+    axis,
+    fromVal,
+    toVal: to.has(axis) ? to.get(axis) : fromVal
+  }));
+
+  span.innerHTML = '';
+  const words = label.split(' ');
+  const letters = [];
+
+  words.forEach((word, wi) => {
+    const w = document.createElement('span');
+    w.className = 'word';
+
+    word.split('').forEach(ch => {
+      const l = document.createElement('span');
+      l.className = 'letter';
+      l.textContent = ch;
+      l.style.fontVariationSettings = fromStr;
+      w.appendChild(l);
+      letters.push(l);
+    });
+
+    span.appendChild(w);
+    if (wi < words.length - 1) {
+      span.appendChild(document.createTextNode(' '));
+    }
+  });
+
+  const sr = document.createElement('span');
+  sr.className = 'sr-only';
+  sr.textContent = label;
+  span.appendChild(sr);
+
+  const pos = { x: 0, y: 0 };
+
+  const updatePos = (cx, cy) => {
+    const rect = container.getBoundingClientRect();
+    pos.x = cx - rect.left;
+    pos.y = cy - rect.top;
+  };
+
+  container.addEventListener(
+    'mousemove',
+    e => updatePos(e.clientX, e.clientY),
+    { passive:true }
+  );
+
+  container.addEventListener(
+    'touchmove',
+    e => {
+      if (e.touches[0]) {
+        updatePos(e.touches[0].clientX, e.touches[0].clientY);
       }
+    },
+    { passive:true }
+  );
+
+  let last = { x:null, y:null };
+
+  function frame(){
+    if (last.x !== pos.x || last.y !== pos.y) {
+      last = { x: pos.x, y: pos.y };
+      const cRect = container.getBoundingClientRect();
+
+      letters.forEach(el => {
+        const r = el.getBoundingClientRect();
+        const cx = (r.left + r.width / 2) - cRect.left;
+        const cy = (r.top + r.height / 2) - cRect.top;
+        const d = dist(pos.x, pos.y, cx, cy);
+
+        if (d >= radius) {
+          el.style.fontVariationSettings = axes
+            .map(({axis, fromVal}) => `'${axis}' ${fromVal}`)
+            .join(', ');
+        } else {
+          const t = falloffFn(falloff, d, radius);
+          el.style.fontVariationSettings = axes
+            .map(({axis, fromVal, toVal}) =>
+              `'${axis}' ${lerp(fromVal, toVal, t)}`
+            )
+            .join(', ');
+        }
+      });
     }
 
-    (function(){
-      const parseSettings = (str) => {
-        const map = new Map();
-        str.split(',').map(s => s.trim()).forEach(entry => {
-          const parts = entry.trim().split(' ');
-          const axisRaw = parts[0];
-          const valRaw = parts[1];
-          map.set(axisRaw.replace(/['"]/g, ''), parseFloat(valRaw));
-        });
-        return map;
-      };
+    requestAnimationFrame(frame);
+  }
 
-      const lerp = (a,b,t)=>a+(b-a)*t;
-      const dist = (x1,y1,x2,y2)=>Math.hypot(x2-x1,y2-y1);
-
-      const falloffFn = (type, d, r) => {
-        const n = Math.min(Math.max(1 - d/r, 0), 1);
-        if (type === 'exponential') return n*n;
-        if (type === 'gaussian') return Math.exp(-((d/(r/2))*(d/(r/2)))/2);
-        return n;
-      };
-
-      const container = document.getElementById('name-container');
-      const span = document.getElementById('variable-proximity');
-      if (!container || !span) return;
-
-      const label = span.dataset.label || 'Cole Dashner';
-      const fromStr = span.dataset.from || "'wght' 400, 'opsz' 12";
-      const toStr = span.dataset.to || "'wght' 1000, 'opsz' 40";
-      const radius = Number(span.dataset.radius || 100);
-      const falloff = (span.dataset.falloff || 'linear').toLowerCase();
-
-      const from = parseSettings(fromStr);
-      const to = parseSettings(toStr);
-
-      const axes = Array.from(from.entries()).map(([axis, fromVal]) => ({
-        axis,
-        fromVal,
-        toVal: to.has(axis) ? to.get(axis) : fromVal
-      }));
-
-      span.innerHTML = '';
-      const words = label.split(' ');
-      const letters = [];
-
-      words.forEach((word, wi) => {
-        const w = document.createElement('span');
-        w.className = 'word';
-
-        word.split('').forEach(ch => {
-          const l = document.createElement('span');
-          l.className = 'letter';
-          l.textContent = ch;
-          l.style.fontVariationSettings = fromStr;
-          w.appendChild(l);
-          letters.push(l);
-        });
-
-        span.appendChild(w);
-        if (wi < words.length - 1) span.appendChild(document.createTextNode(' '));
-      });
-
-      const sr = document.createElement('span');
-      sr.className = 'sr-only';
-      sr.textContent = label;
-      span.appendChild(sr);
-
-      const pos = { x: 0, y: 0 };
-
-      const updatePos = (cx, cy) => {
-        const rect = container.getBoundingClientRect();
-        pos.x = cx - rect.left;
-        pos.y = cy - rect.top;
-      };
-
-      container.addEventListener('mousemove', e => updatePos(e.clientX, e.clientY), { passive:true });
-
-      container.addEventListener('touchmove', e => {
-        if (e.touches[0]) updatePos(e.touches[0].clientX, e.touches[0].clientY);
-      }, { passive:true });
-
-      let last = { x:null, y:null };
-
-      function frame(){
-        if (last.x !== pos.x || last.y !== pos.y) {
-          last = { x: pos.x, y: pos.y };
-          const cRect = container.getBoundingClientRect();
-
-          letters.forEach(el => {
-            const r = el.getBoundingClientRect();
-            const cx = (r.left + r.width / 2) - cRect.left;
-            const cy = (r.top + r.height / 2) - cRect.top;
-            const d = dist(pos.x, pos.y, cx, cy);
-
-            if (d >= radius) {
-              el.style.fontVariationSettings = axes
-                .map(({axis, fromVal}) => `'${axis}' ${fromVal}`)
-                .join(', ');
-            } else {
-              const t = falloffFn(falloff, d, radius);
-              el.style.fontVariationSettings = axes
-                .map(({axis, fromVal, toVal}) => `'${axis}' ${lerp(fromVal, toVal, t)}`)
-                .join(', ');
-            }
-          });
-        }
-
-        requestAnimationFrame(frame);
-      }
-
-      requestAnimationFrame(frame);
-    })();
-  </script>
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
-</html>
 </html>
